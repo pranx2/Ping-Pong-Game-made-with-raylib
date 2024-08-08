@@ -13,8 +13,8 @@ int main(){
   InitWindow(Width,Height,"Pong Game v1.0");
   SetTargetFPS(60);
   //Main Screen;
-  Texture2D Texture = LoadTexture("res/BG.png");
-    Button StartButton("res/start.png",{50,50},50,50);
+  Texture2D BG = LoadTexture("res/BG.png");
+  Button StartButton("res/start.png",{200,100},300,100);
 
     pong line;
     //Ball MoveMent;
@@ -41,37 +41,41 @@ int main(){
     Ai.x = 10;
     Ai.y = Height/2 - 20;
     Ai.speed = AI_Speed;
-    bool exit = false;//Key Pressed condition;
+    // bool exit = false;//Key Pressed condition;
 
-  while(WindowShouldClose() == false && exit == false){
+
+  // if(IsKeyPressed(KEY_SPACE)) exit == false;
+  // else if(IsKeyPressed(KEY_ESCAPE)) exit == true;
+
+  while(WindowShouldClose() == false){
   BeginDrawing();
-  DrawTexture(Texture,0,0,WHITE);//BG Screen;
-  if(IsKeyPressed(KEY_SPACE)){
-  ball.ballMovement();
-  player.update();//player
-  Ai.update(ball.y);//Ai
+
+  // ball.ballMovement();
+  // player.update();//player
+  // Ai.update(ball.y);//Ai
  
-  //Check Collision;---->Player;
-  if(CheckCollisionCircleRec( Vector2{ball.x, ball.y},ball.r,Rectangle{player.x, player.y, player.width, player.height})){
-    ball.speed_x  = -ball.speed_x; //Reverse the Ball;
-  }
-  //Check Collision;---->AI;
-  if(CheckCollisionCircleRec(Vector2{ball.x,ball.y},ball.r,Rectangle{Ai.x, Ai.y, Ai.width, Ai.height})){
-    ball.speed_x = -ball.speed_x;
-  }
-  ball.~pong();
-  ball.BG();
-  line.line();//Middle Line;
-  ball.ball(ball.x, ball.y, ball.r);//Ball postion;
-  player.paddle(player.x, player.y, player.width, player.height);  //paddle player;
-  Ai.paddle(Ai.x, Ai.y, Ai.width, Ai.height);//Paddle Ai;
-  DrawText(TextFormat("AI: %i",ball.AIscore()),Width/2 - 200,10,20,WHITE);///Ai Score Board;
-  DrawText(TextFormat("PLAYER: %i",ball.PLAYERscore()),Width/2 + 120,10,20,WHITE);//Player Score Board;
+  // //Check Collision;---->Player;
+  // if(CheckCollisionCircleRec( Vector2{ball.x, ball.y},ball.r,Rectangle{player.x, player.y, player.width, player.height})){
+  //   ball.speed_x  = -ball.speed_x; //Reverse the Ball;
+  // }
+  // //Check Collision;---->AI;
+  // if(CheckCollisionCircleRec(Vector2{ball.x,ball.y},ball.r,Rectangle{Ai.x, Ai.y, Ai.width, Ai.height})){
+  //   ball.speed_x = -ball.speed_x;
+  // }
+
+  ball.~pong();//Clearing The Screen;
+  DrawTexture(BG,0,0,WHITE);//BG Screen;
+  StartButton.drawbutton();
+  // ball.BG();
+  // line.line();//Middle Line;
+  // ball.ball(ball.x, ball.y, ball.r);//Ball postion;
+
+  // player.paddle(player.x, player.y, player.width, player.height);  //paddle player;
+  // Ai.paddle(Ai.x, Ai.y, Ai.width, Ai.height);//Paddle Ai;
+
+  // DrawText(TextFormat("AI: %i",ball.AIscore()),Width/2 - 200,10,20,WHITE);///Ai Score Board;
+  // DrawText(TextFormat("PLAYER: %i",ball.PLAYERscore()),Width/2 + 120,10,20,WHITE);//Player Score Board;
   EndDrawing();
-  }
-}
-if(IsKeyPressed(KEY_ESCAPE)){
-  exit == true;
 }
 CloseWindow();
  return 0;
