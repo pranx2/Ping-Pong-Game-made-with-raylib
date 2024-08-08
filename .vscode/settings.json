@@ -10,5 +10,8 @@
 	},
 	"files.associations": {
 		"ostream": "cpp"
-	}
+	},
+	"cSpell.words": [
+		"drawbutton"
+	]
 }

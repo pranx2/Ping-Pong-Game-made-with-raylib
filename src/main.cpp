@@ -1,4 +1,7 @@
 #include<raylib.h>
+#include "pong.hpp"
+#include "screen.hpp"
+
 #define Width 720
 #define Height 480
 #define BallSpeed 5           //Change The Ball Speed;    //Default 7;
@@ -6,12 +9,16 @@
 #define PlayerPaddleSpeed 8  //Change The paddle Speed;  //Default 8;
 #define AI_Speed 6           //Change The Paddle Speed;  //Default 8;
 
-#include "pong.hpp"
 int main(){
   InitWindow(Width,Height,"Pong Game v1.0");
   SetTargetFPS(60);
+  //Main Screen;
+  Texture2D Texture = LoadTexture("res/BG.png");
+    Button StartButton("res/start.png",{50,50},50,50);
+
     pong line;
     //Ball MoveMent;
+
     pong ball;
     ball.x = Width/2;
     ball.y = Height/2;
@@ -34,13 +41,16 @@ int main(){
     Ai.x = 10;
     Ai.y = Height/2 - 20;
     Ai.speed = AI_Speed;
+    bool exit = false;//Key Pressed condition;
 
-  while(WindowShouldClose() == false){
+  while(WindowShouldClose() == false && exit == false){
   BeginDrawing();
+  DrawTexture(Texture,0,0,WHITE);//BG Screen;
+  if(IsKeyPressed(KEY_SPACE)){
   ball.ballMovement();
   player.update();//player
   Ai.update(ball.y);//Ai
-
+ 
   //Check Collision;---->Player;
   if(CheckCollisionCircleRec( Vector2{ball.x, ball.y},ball.r,Rectangle{player.x, player.y, player.width, player.height})){
     ball.speed_x  = -ball.speed_x; //Reverse the Ball;
@@ -49,7 +59,6 @@ int main(){
   if(CheckCollisionCircleRec(Vector2{ball.x,ball.y},ball.r,Rectangle{Ai.x, Ai.y, Ai.width, Ai.height})){
     ball.speed_x = -ball.speed_x;
   }
-
   ball.~pong();
   ball.BG();
   line.line();//Middle Line;
@@ -60,6 +69,10 @@ int main(){
   DrawText(TextFormat("PLAYER: %i",ball.PLAYERscore()),Width/2 + 120,10,20,WHITE);//Player Score Board;
   EndDrawing();
   }
+}
+if(IsKeyPressed(KEY_ESCAPE)){
+  exit == true;
+}
 CloseWindow();
  return 0;
 }
