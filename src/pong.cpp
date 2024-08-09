@@ -4,24 +4,19 @@
 int Player_Score = 0;
 int AI_score = 0;
 
-Color Green       = Color{38,185,154,255};
-Color Dark_Green  = Color {20,160,133,255};
-Color Light_Green = Color {129,204,184,255};
-// Color Yellow      = Color {38,185,154,255};
-
 pong::pong(){
 }
 
 pong::~pong(){
-  ClearBackground(Dark_Green);
+  ClearBackground(BLACK);
 }
 
 void pong::ball(int x, int y, int r){//Ball texture;
- DrawCircle(x,y,r,YELLOW);
-}
-
-void pong::line(){//Middle Line;
- DrawLine(Width/2,0,Width/2,Height,WHITE);
+Image img = LoadImage("res/ball.png");
+ImageResize(&img,20,20);
+Texture = LoadTextureFromImage(img);
+UnloadTexture(Texture);
+DrawCircle(x,y,r,YELLOW);
 }
 
 void pong::ballMovement(){//Ball Physics;
@@ -57,11 +52,6 @@ void pong::Reset(){
   int Speed_Choice[2] = {1, -1};
   speed_x *= Speed_Choice[GetRandomValue(0,1)];
   speed_y *= Speed_Choice[GetRandomValue(0,1)];
-}
-
-void pong::BG(){
-   DrawRectangle(Width/2,0,Width/2,Height,Green);
-   DrawCircle(Width/2,Height/2,150,Light_Green);
 }
 
 void paddleMovement::limitMovement(){

@@ -6,6 +6,7 @@
 class pong
 {
 private:
+Texture2D Texture;
 public:
 float x, y, speed_x, speed_y, r;
 //ball posX, posY, ball SpeedX, ball SpeedY;
@@ -17,7 +18,6 @@ float x, y, speed_x, speed_y, r;
  int AIscore();
  int PLAYERscore();
  void Reset();
- void BG();
 };
 
 
