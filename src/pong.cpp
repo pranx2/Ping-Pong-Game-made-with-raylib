@@ -3,6 +3,7 @@
 #define Height 480
 int Player_Score = 0;
 int AI_score = 0;
+
 /*
   @author->Pranx2
   *Main Working cpp
@@ -21,11 +22,12 @@ pong::~pong(){
 }
 
 void pong::ball(int x, int y, int r){//Ball texture;
-Image img = LoadImage("res/ball.png");
-ImageResize(&img,20,20);
-Texture = LoadTextureFromImage(img);
-UnloadTexture(Texture);
-DrawCircle(x,y,r,YELLOW);
+// Image img = LoadImage("res/ball.png");
+// ImageResize(&img,300,50);
+// Texture = LoadTextureFromImage(img);
+// DrawTexture(Texture,x,y,WHITE);
+// UnloadTexture(Texture);
+DrawCircle(x,y,r,PURPLE);
 }
 
 void pong::ScoreAudio(){
@@ -89,7 +91,7 @@ void paddleMovement::limitMovement(){
 
 void paddleMovement::paddle(float x, float y, float width, float height)
 {
- DrawRectangleRounded(Rectangle{x,y,width,height},0.8,0,WHITE);
+ DrawRectangleRounded(Rectangle{x,y,width,height},0,2,SKYBLUE);
 }
 
 void paddleMovement::update(){

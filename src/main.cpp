@@ -25,7 +25,6 @@ int main(){
   Texture2D BackGround = LoadTexture("res/BG.png");
   Button StartButton("res/start.png",{260,300},200,100); //Start Button;
   Texture2D MainBackground = LoadTexture("res/mainbg.png");
-  Texture2D ballBG = LoadTexture("res/ball.png");
     pong line;
     //Ball MoveMent;
 
@@ -52,7 +51,7 @@ int main(){
     Ai.y = Height/2 - 20;
     Ai.speed = AI_Speed;
 
-  bool game = false;
+  bool game = true;
 
   //Entire Screen;
 while(!WindowShouldClose()){
@@ -89,7 +88,6 @@ BeginDrawing();
   
   ball.~pong();//Clearing The Screen;
   DrawTexture(MainBackground,0,0,RAYWHITE);//mainBG;
-  DrawTexture(ballBG,0,0,RAYWHITE);
   ball.ball(ball.x, ball.y, ball.r);//Ball postion;
   
   player.paddle(player.x, player.y, player.width, player.height);
