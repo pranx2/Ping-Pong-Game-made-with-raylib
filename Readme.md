@@ -1,13 +1,24 @@
-## ![image](res/preview.png)
+## ![](res/preview.png)
 
-# ABOUT GAME
+# ABOUT PING PONG CLASSIC 
 -------------
-Made with c++ using raylib
+### Made with c++ using raylib
 -------------------------
-Basic paddle and simple interface
+### Basic paddle and simple interface
 --------------
-#How to Play
+# How to Play
 
-Download the Zip file by clicking over code.
+## Download the Zip file by clicking over code.
 --------------------
-Extract the file and run the exe. [Enjoy]
+Extract the files and run the exe.
+----------------------------------
+## Enjoy
+
+
+
+
+--------
+# Entarface Demo
+----------
+#### ![](res/BG.png)
+#### ![](res/mainbg.png)
