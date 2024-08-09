@@ -1,1 +1,5 @@
-(image)![res/preview.png]
+![image](res/preview.png)
+
+# ABOUT GAME
+-------------
+Made with c++ using raylib
