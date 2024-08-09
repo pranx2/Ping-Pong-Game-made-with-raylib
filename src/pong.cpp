@@ -3,7 +3,16 @@
 #define Height 480
 int Player_Score = 0;
 int AI_score = 0;
-
+/*
+  @author->Pranx2
+  *Main Working cpp
+  *clear background;
+  *Ball Physics;
+  *Player Score;
+  *Paddle Physics;
+  *Score Reset;
+  *Screen Limitation;
+ */
 pong::pong(){
 }
 
@@ -19,18 +28,33 @@ UnloadTexture(Texture);
 DrawCircle(x,y,r,YELLOW);
 }
 
-void pong::ballMovement(){//Ball Physics;
- x += speed_x;
- y += speed_y;
- if(x + r >= GetScreenWidth() || x - r <= 0 ){
-  speed_x = - speed_x;
-  AI_score++; //AI SCORE;
-  Reset();
+void pong::ScoreAudio(){
+  Sound scoreSfx = LoadSound("res/sfx/score.wav");
+  PlaySound(scoreSfx);
+}
+void pong::ballMovement()
+{ // Ball Physics;
+  x += speed_x;
+  y += speed_y;
+  if (x + r >= GetScreenWidth() || x - r <= 0)
+  {
+    speed_x = -speed_x;
+  }
+
+  if (x + r >= GetScreenWidth())
+  {
+    AI_score++; // AI SCORE;
+    ScoreAudio();
+    Reset();
  }
- if(x - r <= 0 ){
+
+ if( x - r  <= 0 || x <=0  ){
   Player_Score++; //PLAYER SCORE;
+  ScoreAudio();
   Reset();
  }
+
+
  if(y + r >= GetScreenHeight() || y - r <= 0){
   speed_y = - speed_y;
  }
@@ -53,6 +77,8 @@ void pong::Reset(){
   speed_x *= Speed_Choice[GetRandomValue(0,1)];
   speed_y *= Speed_Choice[GetRandomValue(0,1)];
 }
+
+//Paddle MoveMent;
 
 void paddleMovement::limitMovement(){
  if( y <= 0) y = 0;

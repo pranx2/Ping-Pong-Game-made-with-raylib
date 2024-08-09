@@ -2,7 +2,6 @@
 #include "pong.hpp"
 #include "screen.hpp"
 #include<iostream>
-
 #define Width 720
 #define Height 480
 #define BallSpeed 6           //Change The Ball Speed;    //Default 7;
@@ -10,13 +9,23 @@
 #define PlayerPaddleSpeed 8  //Change The paddle Speed;  //Default 8;
 #define AI_Speed 4           //Change The Paddle Speed;  //Default 8;
 
+
+
+
+
 int main(){
   InitWindow(Width,Height,"Ping Pong Classic v1.0");
+  InitAudioDevice();
+  
+  Music mainMusic = LoadMusicStream("res/sfx/Main.mp3");
+  PlayMusicStream(mainMusic);
   SetTargetFPS(60);
+  int frameCounter = 0;
   //Entire Screen;
   Texture2D BackGround = LoadTexture("res/BG.png");
   Button StartButton("res/start.png",{260,300},200,100); //Start Button;
   Texture2D MainBackground = LoadTexture("res/mainbg.png");
+  Texture2D ballBG = LoadTexture("res/ball.png");
     pong line;
     //Ball MoveMent;
 
@@ -39,14 +48,15 @@ int main(){
     CpuPuddle Ai;
     Ai.width = 10;
     Ai.height = 50;
-    Ai.x = 10;
+    Ai.x = 8;
     Ai.y = Height/2 - 20;
     Ai.speed = AI_Speed;
 
   bool game = false;
 
   //Entire Screen;
-while(WindowShouldClose() == false ){
+while(!WindowShouldClose()){
+  UpdateMusicStream(mainMusic);
   Vector2 MousePos = GetMousePosition();
     bool MousePressed = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
         if(StartButton.IsPressed(MousePos,MousePressed)){
@@ -54,7 +64,6 @@ while(WindowShouldClose() == false ){
               game = false;
               break;
   }
-BeginDrawing();
   ClearBackground(BLACK);
     DrawTexture(BackGround,0,0,WHITE);//BG Screen;
       StartButton.drawbutton();
@@ -63,6 +72,7 @@ EndDrawing();
 
 
 while(WindowShouldClose() == false && game == false){
+UpdateMusicStream(mainMusic);
 BeginDrawing();
   ball.ballMovement();
       player.update();//player
@@ -79,15 +89,21 @@ BeginDrawing();
   
   ball.~pong();//Clearing The Screen;
   DrawTexture(MainBackground,0,0,RAYWHITE);//mainBG;
-    ball.ball(ball.x, ball.y, ball.r);//Ball postion;
+  DrawTexture(ballBG,0,0,RAYWHITE);
+  ball.ball(ball.x, ball.y, ball.r);//Ball postion;
   
   player.paddle(player.x, player.y, player.width, player.height);
   Ai.paddle(Ai.x, Ai.y, Ai.width, Ai.height);
-  
-  DrawText(TextFormat("AI: %i",ball.AIscore()),Width/2 - 200,10,20,WHITE);///Ai Score Board;
-  DrawText(TextFormat("PLAYER: %i",ball.PLAYERscore()),Width/2 + 120,10,20,WHITE);//Player Score Board;
+  DrawFPS(10,10);
+  DrawText(TextFormat("AI : %i",ball.AIscore()),Width/2 - 200,10,20,WHITE);///Ai Score Board;
+  DrawText(TextFormat("PLAYER : %d",ball.PLAYERscore()),Width/2 + 120,10,20,WHITE);//Player Score Board;
+  DrawText(TextFormat("frames: %i", frameCounter), 10, 470, 10, LIME);
+  frameCounter++;
 EndDrawing();
 }
+
+UnloadMusicStream(mainMusic);
+CloseAudioDevice();
 CloseWindow();
  return 0;
 }

@@ -13,7 +13,7 @@ float x, y, speed_x, speed_y, r;
  pong();
  ~pong();
  void ball(int x, int y, int r);
- void line();
+ void ScoreAudio();
  void ballMovement();
  int AIscore();
  int PLAYERscore();
@@ -21,7 +21,7 @@ float x, y, speed_x, speed_y, r;
 };
 
 
-class paddleMovement{
+class paddleMovement : public pong{
 private:
 protected:
  void  limitMovement();
