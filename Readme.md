@@ -12,10 +12,9 @@
 
 #
 
-## Download the Zip file by clicking over code.
-
+## Download the Zip file by clicking
 -------------------
-here []Poingning Pong Game Madv1.0()./exe/.zip
+here [Poing Pong Game v1.0](./exe.zip)
 ### xtract the files and run the exe.
 
 ----------------------------------
@@ -28,6 +27,6 @@ here []Poingning Pong Game Madv1.0()./exe/.zip
 
 ----------
 
-#(res/BG.png)
+#![](res/BG.png)
 
 #### ![](res/mainbg.png)
