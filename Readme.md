@@ -14,7 +14,7 @@
 
 ## Download the Zip file by clicking
 -------------------
-here [Poing Pong Game v1.0](./exe.zip)
+here [Ping Pong Game v1.0](./exe.zip)
 ### Extract the files and run the exe.
 
 ----------------------------------
