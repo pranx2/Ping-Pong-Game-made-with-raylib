@@ -19,7 +19,7 @@ here [Ping Pong Game v1.0](./exe.zip)
 
 ----------------------------------
 
-/## Enjoy
+## Enjoy
 
 -------
 
