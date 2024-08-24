@@ -23,7 +23,7 @@ here [Ping Pong Game v1.0](./exe.zip)
 
 -------
 
-# Entarface Demo
+# Interface Demo
 
 ----------
 
